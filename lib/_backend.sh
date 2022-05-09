@@ -49,8 +49,8 @@ backend_set_env() {
   frontend_url=${frontend_url%%/*}
   frontend_url=https://$frontend_url
 
-sudo su - owenzap << EOF
-  cat <<[-]EOF > /home/owenzap/${instancia_add}/backend/.env
+sudo su - vespertinewebot << EOF
+  cat <<[-]EOF > /home/vespertinewebot/${instancia_add}/backend/.env
 NODE_ENV=
 BACKEND_URL=${backend_url}
 FRONTEND_URL=${frontend_url}
@@ -83,8 +83,8 @@ backend_node_dependencies() {
 
   sleep 2
 
-  sudo su - owenzap <<EOF
-  cd /home/owenzap/${instancia_add}/backend
+  sudo su - vespertinewebot <<EOF
+  cd /home/vespertinewebot/${instancia_add}/backend
   npm install
 EOF
 
@@ -103,8 +103,8 @@ backend_node_build() {
 
   sleep 2
 
-  sudo su - owenzap <<EOF
-  cd /home/owenzap/${instancia_add}/backend
+  sudo su - vespertinewebot <<EOF
+  cd /home/vespertinewebot/${instancia_add}/backend
   npm install
   npm run build
 EOF
@@ -124,11 +124,11 @@ backend_update() {
 
   sleep 2
 
-  sudo su - owenzap <<EOF
-  cd /home/owenzap/${instancia_add}
-  pm2 stop ${instancia_add}-owenzap-backend
+  sudo su - vespertinewebot <<EOF
+  cd /home/vespertinewebot/${instancia_add}
+  pm2 stop ${instancia_add}-vespertinewebot-backend
   git pull
-  cd /home/owenzap/${instancia_add}/backend
+  cd /home/vespertinewebot/${instancia_add}/backend
   npm install
   npm update -f
   npm install @types/fs-extra
@@ -136,7 +136,7 @@ backend_update() {
   npm run build
   npx sequelize db:migrate
   npx sequelize db:seed
-  pm2 start ${instancia_add}-owenzap-backend 
+  pm2 start ${instancia_add}-vespertinewebot-backend 
 EOF
 
   sleep 2
@@ -154,8 +154,8 @@ backend_db_migrate() {
 
   sleep 2
 
-  sudo su - owenzap <<EOF
-  cd /home/owenzap/${instancia_add}/backend
+  sudo su - vespertinewebot <<EOF
+  cd /home/vespertinewebot/${instancia_add}/backend
   npx sequelize db:migrate
 EOF
 
@@ -174,8 +174,8 @@ backend_db_seed() {
 
   sleep 2
 
-  sudo su - owenzap <<EOF
-  cd /home/owenzap/${instancia_add}/backend
+  sudo su - vespertinewebot <<EOF
+  cd /home/vespertinewebot/${instancia_add}/backend
   npx sequelize db:seed:all
 EOF
 
@@ -195,9 +195,9 @@ backend_start_pm2() {
 
   sleep 2
 
-  sudo su - owenzap <<EOF
-  cd /home/owenzap/${instancia_add}/backend
-  pm2 start dist/server.js --name ${instancia_add}-owenzap-backend
+  sudo su - vespertinewebot <<EOF
+  cd /home/vespertinewebot/${instancia_add}/backend
+  pm2 start dist/server.js --name ${instancia_add}-vespertinewebot-backend
 EOF
 
   sleep 2
