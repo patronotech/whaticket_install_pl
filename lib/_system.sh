@@ -49,7 +49,7 @@ EOF
 #######################################
 system_update() {
   print_banner
-  printf "${WHITE} 💻 Vamos atualizar o sistema Owen Zap...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Vamos atualizar o sistema Vespertinewebot...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
