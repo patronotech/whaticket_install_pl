@@ -15,8 +15,8 @@ system_create_user() {
   sleep 2
 
   sudo su - root <<EOF
-  useradd -m -p $(openssl passwd -crypt $deploy_password) -s /bin/bash -G sudo vespertinewebot
-  usermod -aG sudo vespertinewebot
+  useradd -m -p $(openssl passwd -crypt $deploy_password) -s /bin/bash -G sudo patronotech
+  usermod -aG sudo patronotech
 EOF
 
   sleep 2
@@ -29,14 +29,14 @@ EOF
 #######################################
 system_git_clone() {
   print_banner
-  printf "${WHITE} 💻 Fazendo download do código Vespertinewebot...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Fazendo download do código patronotech...${GRAY_LIGHT}"
   printf "\n\n"
 
 
   sleep 2
 
-  sudo su - vespertinewebot <<EOF
-  git clone ${link_git}  /home/vespertinewebot/${instancia_add}/
+  sudo su - patronotech <<EOF
+  git clone ${link_git}  /home/patronotech/${instancia_add}/
 EOF
 
   sleep 2
@@ -49,7 +49,7 @@ EOF
 #######################################
 system_update() {
   print_banner
-  printf "${WHITE} 💻 Vamos atualizar o sistema Vespertinewebot...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Vamos atualizar o sistema patronotech...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -186,8 +186,8 @@ system_pm2_install() {
 
   sudo su - root <<EOF
   npm install -g pm2
-  pm2 startup ubuntu -u vespertinewebot
-  env PATH=\$PATH:/usr/bin pm2 startup ubuntu -u vespertinewebot --hp /home/vespertinewebot/${instancia_add}
+  pm2 startup ubuntu -u patronotech
+  env PATH=\$PATH:/usr/bin pm2 startup ubuntu -u patronotech --hp /home/patronotech/${instancia_add}
 EOF
 
   sleep 2
@@ -288,7 +288,7 @@ system_nginx_conf() {
 
 #sudo su - root << EOF
 
-#cat > /etc/nginx/conf.d/vespertinewebot.conf << 'END'
+#cat > /etc/nginx/conf.d/patronotech.conf << 'END'
 #client_max_body_size 20M;
 #END
 
